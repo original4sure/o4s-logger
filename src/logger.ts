@@ -1,17 +1,8 @@
 import { createLogger, transports, format, Logger } from "winston";
 import { ExpressLoggerMiddlewares, KoaLoggerMiddlewares } from "./middlewares";
-import { dirname } from "path";
 
-export namespace AppLoggers {
+export namespace logger {
   let logger: Logger;
-
-  export const initNewRelic = () => {
-    if (process.env.NODE_ENV !== "local" && process.env.NEW_RELIC_LICENSE_KEY) {
-      process.env.NEW_RELIC_HOME = dirname(__dirname);
-      /* tslint:disable-next-line */
-      require("newrelic");
-    }
-  };
 
   const getLogger = () => {
     if (!logger) {
@@ -39,4 +30,16 @@ export namespace AppLoggers {
 
   export const info = (data: any) => getLogger().info(data);
   export const error = (err: any) => getLogger().error(err);
+
+  export const errorStream = {
+    write: (message, encoding) => {
+      info(message);
+    },
+  };
+
+  export const successStream = {
+    write: (message, encoding) => {
+      error(message);
+    },
+  };
 }

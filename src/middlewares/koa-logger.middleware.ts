@@ -6,6 +6,7 @@ import {
   getRealIp,
   getRequestDetails,
 } from "../common/common";
+import { logger } from "../logger";
 
 export namespace KoaLoggerMiddlewares {
   /** prepare custom morgan tokens */
@@ -17,7 +18,11 @@ export namespace KoaLoggerMiddlewares {
    */
   export const ErrorLoggerMiddleware = morgan(getFormatString(), {
     skip: IsErrorResponse,
-    stream: process.stderr,
+    stream: {
+      write: (message, encoding) => {
+        logger.error(message);
+      },
+    },
   });
 
   /**
@@ -25,6 +30,10 @@ export namespace KoaLoggerMiddlewares {
    */
   export const SuccessLoggerMiddleware = morgan(getFormatString(), {
     skip: IsSuccessResponse,
-    stream: process.stdout,
+    stream: {
+      write: (message, encoding) => {
+        logger.info(message);
+      },
+    },
   });
 }

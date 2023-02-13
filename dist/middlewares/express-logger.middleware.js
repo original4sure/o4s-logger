@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExpressLoggerMiddlewares = void 0;
 const morgan = require("morgan");
 const common_1 = require("../common/common");
+const logger_1 = require("../logger");
 var ExpressLoggerMiddlewares;
 (function (ExpressLoggerMiddlewares) {
     /** prepare custom morgan tokens */
@@ -13,14 +14,22 @@ var ExpressLoggerMiddlewares;
      */
     ExpressLoggerMiddlewares.ErrorLoggerMiddleware = morgan((0, common_1.getFormatString)(), {
         skip: common_1.IsErrorResponse,
-        stream: process.stderr,
+        stream: {
+            write: (message, encoding) => {
+                logger_1.logger.error(message);
+            },
+        },
     });
     /**
      * Success logger middleware
      */
     ExpressLoggerMiddlewares.SuccessLoggerMiddleware = morgan((0, common_1.getFormatString)(), {
         skip: common_1.IsSuccessResponse,
-        stream: process.stdout,
+        stream: {
+            write: (message, encoding) => {
+                logger_1.logger.info(message);
+            },
+        },
     });
 })(ExpressLoggerMiddlewares = exports.ExpressLoggerMiddlewares || (exports.ExpressLoggerMiddlewares = {}));
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXhwcmVzcy1sb2dnZXIubWlkZGxld2FyZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9taWRkbGV3YXJlcy9leHByZXNzLWxvZ2dlci5taWRkbGV3YXJlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLGlDQUFpQztBQUNqQyw2Q0FNMEI7QUFFMUIsSUFBaUIsd0JBQXdCLENBb0J4QztBQXBCRCxXQUFpQix3QkFBd0I7SUFDdkMsbUNBQW1DO0lBQ25DLE1BQU0sQ0FBQyxLQUFLLENBQUMsaUJBQWlCLEVBQUUsMEJBQWlCLENBQUMsQ0FBQztJQUNuRCxNQUFNLENBQUMsS0FBSyxDQUFDLGFBQWEsRUFBRSxrQkFBUyxDQUFDLENBQUM7SUFFdkM7O09BRUc7SUFDVSw4Q0FBcUIsR0FBRyxNQUFNLENBQUMsSUFBQSx3QkFBZSxHQUFFLEVBQUU7UUFDN0QsSUFBSSxFQUFFLHdCQUFlO1FBQ3JCLE1BQU0sRUFBRSxPQUFPLENBQUMsTUFBTTtLQUN2QixDQUFDLENBQUM7SUFFSDs7T0FFRztJQUNVLGdEQUF1QixHQUFHLE1BQU0sQ0FBQyxJQUFBLHdCQUFlLEdBQUUsRUFBRTtRQUMvRCxJQUFJLEVBQUUsMEJBQWlCO1FBQ3ZCLE1BQU0sRUFBRSxPQUFPLENBQUMsTUFBTTtLQUN2QixDQUFDLENBQUM7QUFDTCxDQUFDLEVBcEJnQix3QkFBd0IsR0FBeEIsZ0NBQXdCLEtBQXhCLGdDQUF3QixRQW9CeEMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXhwcmVzcy1sb2dnZXIubWlkZGxld2FyZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9taWRkbGV3YXJlcy9leHByZXNzLWxvZ2dlci5taWRkbGV3YXJlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLGlDQUFpQztBQUNqQyw2Q0FNMEI7QUFDMUIsc0NBQW1DO0FBRW5DLElBQWlCLHdCQUF3QixDQTRCeEM7QUE1QkQsV0FBaUIsd0JBQXdCO0lBQ3ZDLG1DQUFtQztJQUNuQyxNQUFNLENBQUMsS0FBSyxDQUFDLGlCQUFpQixFQUFFLDBCQUFpQixDQUFDLENBQUM7SUFDbkQsTUFBTSxDQUFDLEtBQUssQ0FBQyxhQUFhLEVBQUUsa0JBQVMsQ0FBQyxDQUFDO0lBRXZDOztPQUVHO0lBQ1UsOENBQXFCLEdBQUcsTUFBTSxDQUFDLElBQUEsd0JBQWUsR0FBRSxFQUFFO1FBQzdELElBQUksRUFBRSx3QkFBZTtRQUNyQixNQUFNLEVBQUU7WUFDTixLQUFLLEVBQUUsQ0FBQyxPQUFPLEVBQUUsUUFBUSxFQUFFLEVBQUU7Z0JBQzNCLGVBQU0sQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLENBQUM7WUFDeEIsQ0FBQztTQUNGO0tBQ0YsQ0FBQyxDQUFDO0lBRUg7O09BRUc7SUFDVSxnREFBdUIsR0FBRyxNQUFNLENBQUMsSUFBQSx3QkFBZSxHQUFFLEVBQUU7UUFDL0QsSUFBSSxFQUFFLDBCQUFpQjtRQUN2QixNQUFNLEVBQUU7WUFDTixLQUFLLEVBQUUsQ0FBQyxPQUFPLEVBQUUsUUFBUSxFQUFFLEVBQUU7Z0JBQzNCLGVBQU0sQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLENBQUM7WUFDdkIsQ0FBQztTQUNGO0tBQ0YsQ0FBQyxDQUFDO0FBQ0wsQ0FBQyxFQTVCZ0Isd0JBQXdCLEdBQXhCLGdDQUF3QixLQUF4QixnQ0FBd0IsUUE0QnhDIn0=
