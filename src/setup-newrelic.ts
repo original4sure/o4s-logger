@@ -1,6 +1,5 @@
 import * as dotenv from "dotenv";
 import { dirname, resolve } from "path";
-import { logger } from "./logger";
 
 const initNewRelic = () => {
   const loggerRootDir = dirname(__dirname);
@@ -17,10 +16,6 @@ const initNewRelic = () => {
     process.env.NEW_RELIC_HOME = loggerRootDir;
     /* tslint:disable-next-line */
     require("newrelic");
-  } else {
-    logger.info(
-      "newrelic not started!!! mandatory keys not present: NODE_ENV | DEPLOY_ENV | NEW_RELIC_LICENSE_KEY"
-    );
   }
 };
 
