@@ -1,6 +1,6 @@
 {
   "name": "@original4sure/o4s-logger",
-  "version": "0.0.17",
+  "version": "0.0.20",
   "description": "o4s logger library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,7 +33,7 @@
     "dotenv": "^16.0.3",
     "koa-morgan": "^1.0.1",
     "morgan": "^1.10.0",
-    "newrelic": "^9.9.0",
+    "newrelic": "^9.10.1",
     "winston": "^3.8.2"
   },
   "repository": "https://github.com/original4sure/o4s-logger.git",
