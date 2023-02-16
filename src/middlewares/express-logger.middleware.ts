@@ -10,16 +10,15 @@ import { logger } from "../logger";
 
 export namespace ExpressLoggerMiddlewares {
   /** prepare custom morgan tokens */
-  morgan.token("o4s-req-details", getRequestDetails);
-  morgan.token("o4s-real-ip", getRealIp);
-
+  morgan.token("o4s-req-details", getRequestDetails("express"));
+  morgan.token("o4s-real-ip", getRealIp("express"));
   /**
    * Error logger middleware
    */
   export const ErrorLoggerMiddleware = morgan(getFormatString(), {
     skip: IsErrorResponse,
     stream: {
-      write: (message, encoding) => {
+      write: (message) => {
         logger.error(message);
       },
     },
@@ -31,7 +30,7 @@ export namespace ExpressLoggerMiddlewares {
   export const SuccessLoggerMiddleware = morgan(getFormatString(), {
     skip: IsSuccessResponse,
     stream: {
-      write: (message, encoding) => {
+      write: (message) => {
         logger.info(message);
       },
     },

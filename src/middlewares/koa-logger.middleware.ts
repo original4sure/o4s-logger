@@ -1,4 +1,4 @@
-import * as morgan from "koa-morgan";
+import * as morgan from "morgan";
 import {
   IsErrorResponse,
   IsSuccessResponse,
@@ -10,8 +10,8 @@ import { logger } from "../logger";
 
 export namespace KoaLoggerMiddlewares {
   /** prepare custom morgan tokens */
-  morgan.token("o4s-req-details", getRequestDetails);
-  morgan.token("o4s-real-ip", getRealIp);
+  morgan.token("o4s-req-details", getRequestDetails("koa"));
+  morgan.token("o4s-real-ip", getRealIp("koa"));
 
   /**
    * Error logger middleware
@@ -19,7 +19,7 @@ export namespace KoaLoggerMiddlewares {
   export const ErrorLoggerMiddleware = morgan(getFormatString(), {
     skip: IsErrorResponse,
     stream: {
-      write: (message, encoding) => {
+      write: (message) => {
         logger.error(message);
       },
     },
@@ -31,7 +31,7 @@ export namespace KoaLoggerMiddlewares {
   export const SuccessLoggerMiddleware = morgan(getFormatString(), {
     skip: IsSuccessResponse,
     stream: {
-      write: (message, encoding) => {
+      write: (message) => {
         logger.info(message);
       },
     },
