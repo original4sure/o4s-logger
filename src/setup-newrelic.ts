@@ -1,7 +1,12 @@
-import { loggerConfig } from "./config";
+import { dirname } from "path";
 
 export const initNewRelic = () => {
-  if (loggerConfig.getLoggerConfig().initNewRelic) {
+  if (initNewRelicCheck()) {
+    const newrelicConfigDirPath = dirname(__dirname);
+
+    /** from this path newrelic.js will be searched */
+    process.env.NEW_RELIC_HOME = newrelicConfigDirPath;
+
     /* tslint:disable-next-line */
     require("newrelic");
   }

@@ -9,6 +9,5 @@ export enum LOG_LEVEL {
 }
 
 export interface ILoggerConfiguration {
-  initNewRelic: boolean;
   logLevel: LOG_LEVEL;
 }
