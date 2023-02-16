@@ -3,20 +3,33 @@ import {
   IsErrorResponse,
   IsSuccessResponse,
   getFormatString,
-  getRealIp,
-  getRequestDetails,
 } from "../common/common";
 import { logger } from "../logger";
 
 export namespace KoaLoggerMiddlewares {
-  /** prepare custom morgan tokens */
-  morgan.token("o4s-req-details", getRequestDetails("koa"));
-  morgan.token("o4s-real-ip", getRealIp("koa"));
+  /**
+   * init the express morgan tokens
+   */
+  const initMorganTokens = () => {
+    /** prepare custom morgan tokens */
+    morgan.token("o4s-req-details", (ctx) => {
+      return JSON.stringify({
+        headers: ctx.headers,
+        body: ctx.body,
+        query: ctx.query,
+        params: ctx.params,
+      });
+    });
+
+    morgan.token("o4s-real-ip", (ctx) => {
+      return ctx.request.ip || "";
+    });
+  };
 
   /**
    * Error logger middleware
    */
-  export const ErrorLoggerMiddleware = morgan(getFormatString(), {
+  const ErrorLoggerMiddleware = morgan(getFormatString(), {
     skip: IsErrorResponse,
     stream: {
       write: (message) => {
@@ -28,7 +41,7 @@ export namespace KoaLoggerMiddlewares {
   /**
    * Success logger middleware
    */
-  export const SuccessLoggerMiddleware = morgan(getFormatString(), {
+  const SuccessLoggerMiddleware = morgan(getFormatString(), {
     skip: IsSuccessResponse,
     stream: {
       write: (message) => {
@@ -36,4 +49,16 @@ export namespace KoaLoggerMiddlewares {
       },
     },
   });
+
+  export const getSuccessLoggerMiddleware = () => {
+    initMorganTokens();
+
+    return SuccessLoggerMiddleware;
+  };
+
+  export const getErrorLoggerMiddleware = () => {
+    initMorganTokens();
+
+    return ErrorLoggerMiddleware;
+  };
 }

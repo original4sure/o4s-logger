@@ -22,13 +22,14 @@ export namespace logger {
     return logger;
   };
 
-  export const KoaSuccessLogger = KoaLoggerMiddlewares.SuccessLoggerMiddleware;
-  export const KoaErrorLogger = KoaLoggerMiddlewares.ErrorLoggerMiddleware;
+  export const KoaSuccessLogger =
+    KoaLoggerMiddlewares.getSuccessLoggerMiddleware;
+  export const KoaErrorLogger = KoaLoggerMiddlewares.getErrorLoggerMiddleware;
 
   export const ExpressSuccessLogger =
-    ExpressLoggerMiddlewares.SuccessLoggerMiddleware;
+    ExpressLoggerMiddlewares.getSuccessLoggerMiddleware;
   export const ExpressErrorLogger =
-    ExpressLoggerMiddlewares.ErrorLoggerMiddleware;
+    ExpressLoggerMiddlewares.getErrorLoggerMiddleware;
 
   export const error = (data: any) => getLogger().error(data);
   export const warn = (data: any) => getLogger().warn(data);

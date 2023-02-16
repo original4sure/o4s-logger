@@ -1,53 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IsSuccessResponse = exports.IsErrorResponse = exports.getFormatString = exports.getRealIp = exports.getRequestDetails = void 0;
+exports.IsSuccessResponse = exports.IsErrorResponse = exports.getFormatString = void 0;
 const logFormatString = ":o4s-real-ip :remote-user :method :url HTTP/:http-version - :status :res[content-type] :res[content-length] - :response-time ms REQUEST_DETAILS - :o4s-req-details";
-/**
- * Get Request Details
- * @param req
- * @returns
- */
-const getRequestDetails = (framework) => {
-    if (framework === "express") {
-        return (req) => {
-            return JSON.stringify({
-                headers: req.headers,
-                body: req.body,
-                query: req.query,
-                params: req.params,
-            });
-        };
-    }
-    else {
-        return (ctx) => {
-            return JSON.stringify({
-                headers: ctx.headers,
-                body: ctx.body,
-                query: ctx.query,
-                params: ctx.params,
-            });
-        };
-    }
-};
-exports.getRequestDetails = getRequestDetails;
-/**
- * Get real ip
- * @param req
- * @returns
- */
-const getRealIp = (framework) => {
-    if (framework === "express") {
-        return (req) => {
-            return req.connection.remoteAddress || "";
-        };
-    }
-    else {
-        return (ctx) => {
-            return ctx.request.ip || "";
-        };
-    }
-};
-exports.getRealIp = getRealIp;
+// /**
+//  * Get Request Details
+//  * @param req
+//  * @returns
+//  */
+// export const getRequestDetails = (framework: "koa" | "express") => {
+//   if (framework === "express") {
+//     return
+//   } else {
+//     return
+// };
+// /**
+//  * Get real ip
+//  * @param req
+//  * @returns
+//  */
+// export const getRealIp = (framework: "koa" | "express") => {
+//   if (framework === "express") {
+//     return ;
+//   } else {
+//     return (ctx) => {
+//       return ctx.request.ip || "";
+//     };
+//   }
+// };
 /**
  * Get the log formatting string
  * @returns
@@ -76,4 +55,4 @@ const IsSuccessResponse = (req, res) => {
     return res.statusCode >= 400;
 };
 exports.IsSuccessResponse = IsSuccessResponse;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tbW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbW1vbi9jb21tb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsTUFBTSxlQUFlLEdBQ25CLG9LQUFvSyxDQUFDO0FBRXZLOzs7O0dBSUc7QUFDSSxNQUFNLGlCQUFpQixHQUFHLENBQUMsU0FBNEIsRUFBRSxFQUFFO0lBQ2hFLElBQUksU0FBUyxLQUFLLFNBQVMsRUFBRTtRQUMzQixPQUFPLENBQUMsR0FBRyxFQUFFLEVBQUU7WUFDYixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7Z0JBQ3BCLE9BQU8sRUFBRSxHQUFHLENBQUMsT0FBTztnQkFDcEIsSUFBSSxFQUFFLEdBQUcsQ0FBQyxJQUFJO2dCQUNkLEtBQUssRUFBRSxHQUFHLENBQUMsS0FBSztnQkFDaEIsTUFBTSxFQUFFLEdBQUcsQ0FBQyxNQUFNO2FBQ25CLENBQUMsQ0FBQztRQUNMLENBQUMsQ0FBQztLQUNIO1NBQU07UUFDTCxPQUFPLENBQUMsR0FBRyxFQUFFLEVBQUU7WUFDYixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7Z0JBQ3BCLE9BQU8sRUFBRSxHQUFHLENBQUMsT0FBTztnQkFDcEIsSUFBSSxFQUFFLEdBQUcsQ0FBQyxJQUFJO2dCQUNkLEtBQUssRUFBRSxHQUFHLENBQUMsS0FBSztnQkFDaEIsTUFBTSxFQUFFLEdBQUcsQ0FBQyxNQUFNO2FBQ25CLENBQUMsQ0FBQztRQUNMLENBQUMsQ0FBQztLQUNIO0FBQ0gsQ0FBQyxDQUFDO0FBcEJXLFFBQUEsaUJBQWlCLHFCQW9CNUI7QUFFRjs7OztHQUlHO0FBQ0ksTUFBTSxTQUFTLEdBQUcsQ0FBQyxTQUE0QixFQUFFLEVBQUU7SUFDeEQsSUFBSSxTQUFTLEtBQUssU0FBUyxFQUFFO1FBQzNCLE9BQU8sQ0FBQyxHQUFHLEVBQUUsRUFBRTtZQUNiLE9BQU8sR0FBRyxDQUFDLFVBQVUsQ0FBQyxhQUFhLElBQUksRUFBRSxDQUFDO1FBQzVDLENBQUMsQ0FBQztLQUNIO1NBQU07UUFDTCxPQUFPLENBQUMsR0FBRyxFQUFFLEVBQUU7WUFDYixPQUFPLEdBQUcsQ0FBQyxPQUFPLENBQUMsRUFBRSxJQUFJLEVBQUUsQ0FBQztRQUM5QixDQUFDLENBQUM7S0FDSDtBQUNILENBQUMsQ0FBQztBQVZXLFFBQUEsU0FBUyxhQVVwQjtBQUVGOzs7R0FHRztBQUNJLE1BQU0sZUFBZSxHQUFHLEdBQUcsRUFBRTtJQUNsQyxPQUFPLGVBQWUsQ0FBQztBQUN6QixDQUFDLENBQUM7QUFGVyxRQUFBLGVBQWUsbUJBRTFCO0FBRUY7Ozs7O0dBS0c7QUFDSSxNQUFNLGVBQWUsR0FBRyxDQUFDLEdBQUcsRUFBRSxHQUFHLEVBQUUsRUFBRTtJQUMxQyxPQUFPLEdBQUcsQ0FBQyxVQUFVLEdBQUcsR0FBRyxDQUFDO0FBQzlCLENBQUMsQ0FBQztBQUZXLFFBQUEsZUFBZSxtQkFFMUI7QUFFRjs7Ozs7R0FLRztBQUNJLE1BQU0saUJBQWlCLEdBQUcsQ0FBQyxHQUFHLEVBQUUsR0FBRyxFQUFFLEVBQUU7SUFDNUMsT0FBTyxHQUFHLENBQUMsVUFBVSxJQUFJLEdBQUcsQ0FBQztBQUMvQixDQUFDLENBQUM7QUFGVyxRQUFBLGlCQUFpQixxQkFFNUIifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tbW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbW1vbi9jb21tb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsTUFBTSxlQUFlLEdBQ25CLG9LQUFvSyxDQUFDO0FBRXZLLE1BQU07QUFDTix5QkFBeUI7QUFDekIsZ0JBQWdCO0FBQ2hCLGNBQWM7QUFDZCxNQUFNO0FBQ04sdUVBQXVFO0FBQ3ZFLG1DQUFtQztBQUNuQyxhQUFhO0FBQ2IsYUFBYTtBQUNiLGFBQWE7QUFDYixLQUFLO0FBRUwsTUFBTTtBQUNOLGlCQUFpQjtBQUNqQixnQkFBZ0I7QUFDaEIsY0FBYztBQUNkLE1BQU07QUFDTiwrREFBK0Q7QUFDL0QsbUNBQW1DO0FBQ25DLGVBQWU7QUFDZixhQUFhO0FBQ2Isd0JBQXdCO0FBQ3hCLHFDQUFxQztBQUNyQyxTQUFTO0FBQ1QsTUFBTTtBQUNOLEtBQUs7QUFFTDs7O0dBR0c7QUFDSSxNQUFNLGVBQWUsR0FBRyxHQUFHLEVBQUU7SUFDbEMsT0FBTyxlQUFlLENBQUM7QUFDekIsQ0FBQyxDQUFDO0FBRlcsUUFBQSxlQUFlLG1CQUUxQjtBQUVGOzs7OztHQUtHO0FBQ0ksTUFBTSxlQUFlLEdBQUcsQ0FBQyxHQUFHLEVBQUUsR0FBRyxFQUFFLEVBQUU7SUFDMUMsT0FBTyxHQUFHLENBQUMsVUFBVSxHQUFHLEdBQUcsQ0FBQztBQUM5QixDQUFDLENBQUM7QUFGVyxRQUFBLGVBQWUsbUJBRTFCO0FBRUY7Ozs7O0dBS0c7QUFDSSxNQUFNLGlCQUFpQixHQUFHLENBQUMsR0FBRyxFQUFFLEdBQUcsRUFBRSxFQUFFO0lBQzVDLE9BQU8sR0FBRyxDQUFDLFVBQVUsSUFBSSxHQUFHLENBQUM7QUFDL0IsQ0FBQyxDQUFDO0FBRlcsUUFBQSxpQkFBaUIscUJBRTVCIn0=
