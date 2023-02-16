@@ -1,33 +1,6 @@
 const logFormatString =
   ":o4s-real-ip :remote-user :method :url HTTP/:http-version - :status :res[content-type] :res[content-length] - :response-time ms REQUEST_DETAILS - :o4s-req-details";
 
-// /**
-//  * Get Request Details
-//  * @param req
-//  * @returns
-//  */
-// export const getRequestDetails = (framework: "koa" | "express") => {
-//   if (framework === "express") {
-//     return
-//   } else {
-//     return
-// };
-
-// /**
-//  * Get real ip
-//  * @param req
-//  * @returns
-//  */
-// export const getRealIp = (framework: "koa" | "express") => {
-//   if (framework === "express") {
-//     return ;
-//   } else {
-//     return (ctx) => {
-//       return ctx.request.ip || "";
-//     };
-//   }
-// };
-
 /**
  * Get the log formatting string
  * @returns
