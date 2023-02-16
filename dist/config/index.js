@@ -14,10 +14,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const config_1 = require("./config");
-/** first load logger configuration */
-config_1.loggerConfig.loadLoggerConfiguration();
-const setup_newrelic_1 = require("./setup-newrelic");
-(0, setup_newrelic_1.initNewRelic)();
-__exportStar(require("./logger"), exports);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHFDQUF3QztBQUV4QyxzQ0FBc0M7QUFDdEMscUJBQVksQ0FBQyx1QkFBdUIsRUFBRSxDQUFDO0FBRXZDLHFEQUFnRDtBQUVoRCxJQUFBLDZCQUFZLEdBQUUsQ0FBQztBQUVmLDJDQUF5QiJ9
+__exportStar(require("./logger.config"), exports);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvY29uZmlnL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxrREFBZ0MifQ==

@@ -1,22 +1,21 @@
-import * as dotenv from "dotenv";
-import { dirname, resolve } from "path";
+import { dirname } from "path";
 
-const initNewRelic = () => {
-  const loggerRootDir = dirname(__dirname);
-  const applicationRootDir = dirname(dirname(dirname(loggerRootDir)));
+export const initNewRelic = () => {
+  if (initNewRelicCheck()) {
+    const newrelicConfigDirPath = dirname(__dirname);
 
-  const envFilePath = resolve(`${applicationRootDir}/environment/.env`);
-  dotenv.config({ path: envFilePath });
+    /** from this path newrelic.js will be searched */
+    process.env.NEW_RELIC_HOME = newrelicConfigDirPath;
 
-  if (
-    process.env.NODE_ENV !== "local" &&
-    process.env.DEPLOY_ENV &&
-    process.env.NEW_RELIC_LICENSE_KEY
-  ) {
-    process.env.NEW_RELIC_HOME = loggerRootDir;
     /* tslint:disable-next-line */
     require("newrelic");
   }
 };
 
-initNewRelic();
+export const initNewRelicCheck = () => {
+  return (
+    process.env.NODE_ENV !== "local" &&
+    process.env.DEPLOY_ENV &&
+    (process.env.NEW_RELIC_LICENSE_KEY || process.env.NEW_RELIC_LICENSE_KEY_2)
+  );
+};
