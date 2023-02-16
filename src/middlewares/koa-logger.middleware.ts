@@ -9,6 +9,7 @@ import {
 } from "../common/common";
 import { logger } from "../logger";
 
+loggerConfig.getLoggerConfig();
 export namespace KoaLoggerMiddlewares {
   /** prepare custom morgan tokens */
   morgan.token("o4s-req-details", getRequestDetails);
