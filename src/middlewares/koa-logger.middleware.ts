@@ -1,4 +1,5 @@
 import * as morgan from "koa-morgan";
+import { loggerConfig } from "../config";
 import {
   IsErrorResponse,
   IsSuccessResponse,

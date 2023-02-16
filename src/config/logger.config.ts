@@ -31,6 +31,8 @@ export namespace loggerConfig {
   };
 
   export const setEnvironment = () => {
+    /* tslint:disable-next-line */
+    console.log("loading var");
     /** load environment variables */
     const loggerRootDir = dirname(dirname(__dirname));
     const applicationRootDir = dirname(dirname(dirname(loggerRootDir)));
