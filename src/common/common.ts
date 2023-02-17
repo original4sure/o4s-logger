@@ -39,8 +39,8 @@ export const getRealIp = (framework: "koa" | "express") => {
       return req.connection.remoteAddress || "";
     };
   } else {
-    return (ctx) => {
-      return ctx.request.ip || "";
+    return (req) => {
+      return req.ctx.request.ip || "";
     };
   }
 };

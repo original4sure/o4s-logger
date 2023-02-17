@@ -1,4 +1,4 @@
-import * as morgan from "morgan";
+import * as originalMorgan from "morgan";
 import {
   IsErrorResponse,
   IsSuccessResponse,
@@ -9,7 +9,21 @@ import {
 import { logger } from "../logger";
 
 export namespace KoaLoggerMiddlewares {
+  function morgan(format: string, options: any) {
+    const fn = originalMorgan(format, options);
+    return (ctx, next) => {
+      return new Promise((resolve, reject) => {
+        ctx.req.ctx = ctx;
+        fn(ctx.req, ctx.res, (err) => {
+          err ? reject(err) : resolve(ctx);
+        });
+      }).then(next);
+    };
+  }
   /** prepare custom morgan tokens */
+  morgan.compile = originalMorgan.compile;
+  morgan.format = originalMorgan.format;
+  morgan.token = originalMorgan.token;
   morgan.token("o4s-req-details", getRequestDetails("koa"));
   morgan.token("o4s-real-ip", getRealIp("koa"));
 
