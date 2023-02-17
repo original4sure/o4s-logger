@@ -13,8 +13,8 @@ export namespace KoaLoggerMiddlewares {
     const fn = originalMorgan(format, options);
     return (ctx, next) => {
       return new Promise((resolve, reject) => {
-        ctx.req.ctx = ctx;
-        fn(ctx.req, ctx.res, (err) => {
+        ctx.request.ctx = ctx;
+        fn(ctx.request, ctx.res, (err) => {
           err ? reject(err) : resolve(ctx);
         });
       }).then(next);

@@ -17,12 +17,12 @@ export const getRequestDetails = (framework: "koa" | "express") => {
       });
     };
   } else {
-    return (ctx) => {
+    return (req) => {
       return JSON.stringify({
-        headers: ctx.headers,
-        body: ctx.body,
-        query: ctx.query,
-        params: ctx.params,
+        headers: req.headers,
+        body: req.body,
+        query: req.query,
+        params: req.ctx.params, // TODO: params in koa are not parsed.
       });
     };
   }
