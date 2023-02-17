@@ -20,7 +20,7 @@
     "postbuild": "rimraf  dist/**/spec dist/**/*.spec.js",
     "start": "node ./dist/main.js",
     "profile": "node --prof ./dist/main.js",
-    "dev": "ts-node-dev src/main.ts",
+    "dev": "ts-node-dev src/index.ts",
     "watch": "tsc -w -p ./src -p ./tsconfig.json"
   },
   "author": "",
