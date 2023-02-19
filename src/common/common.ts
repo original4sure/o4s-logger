@@ -6,13 +6,26 @@ const logFormatString =
  * @param req
  * @returns
  */
-export const getRequestDetails = (req) => {
-  return JSON.stringify({
-    headers: req.headers,
-    body: req.body,
-    query: req.query,
-    params: req.params,
-  });
+export const getRequestDetails = (framework: "koa" | "express") => {
+  if (framework === "express") {
+    return (req) => {
+      return JSON.stringify({
+        headers: req.headers,
+        body: req.body,
+        query: req.query,
+        params: req.params,
+      });
+    };
+  } else {
+    return (req) => {
+      return JSON.stringify({
+        headers: req.headers,
+        body: req.body,
+        query: req.query,
+        params: req.ctx.params, // TODO: params in koa are not parsed.
+      });
+    };
+  }
 };
 
 /**
@@ -20,8 +33,16 @@ export const getRequestDetails = (req) => {
  * @param req
  * @returns
  */
-export const getRealIp = (req) => {
-  return req.connection.remoteAddress || "";
+export const getRealIp = (framework: "koa" | "express") => {
+  if (framework === "express") {
+    return (req) => {
+      return req.connection.remoteAddress || "";
+    };
+  } else {
+    return (req) => {
+      return req.ctx.request.ip || "";
+    };
+  }
 };
 
 /**
