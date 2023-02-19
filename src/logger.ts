@@ -34,26 +34,15 @@ export namespace logger {
   export const verbose = (data: any) => getLogger().verbose(data);
   export const debug = (data: any) => getLogger().debug(data);
   export const silly = (data: any) => getLogger().silly(data);
-
-  export const errorStream = {
-    write: (message, encoding) => {
-      info(message);
-    },
-  };
-
-  export const successStream = {
-    write: (message, encoding) => {
-      error(message);
-    },
-  };
 }
 
 export namespace RequestLogger {
-  export const KoaSuccessLogger = KoaLoggerMiddlewares.SuccessLoggerMiddleware;
-  export const KoaErrorLogger = KoaLoggerMiddlewares.ErrorLoggerMiddleware;
+  export const KoaSuccessLogger =
+    KoaLoggerMiddlewares.getSuccessLoggerMiddleware;
+  export const KoaErrorLogger = KoaLoggerMiddlewares.getErrorLoggerMiddleware;
 
   export const ExpressSuccessLogger =
-    ExpressLoggerMiddlewares.SuccessLoggerMiddleware;
+    ExpressLoggerMiddlewares.getSuccessLoggerMiddleware;
   export const ExpressErrorLogger =
-    ExpressLoggerMiddlewares.ErrorLoggerMiddleware;
+    ExpressLoggerMiddlewares.getErrorLoggerMiddleware;
 }
