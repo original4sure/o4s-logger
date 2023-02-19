@@ -24,13 +24,20 @@ export namespace KoaLoggerMiddlewares {
   morgan.compile = originalMorgan.compile;
   morgan.format = originalMorgan.format;
   morgan.token = originalMorgan.token;
-  morgan.token("o4s-req-details", getRequestDetails("koa"));
-  morgan.token("o4s-real-ip", getRealIp("koa"));
+
+  /**
+   * init morgan token
+   */
+  const initMorganTokens = () => {
+    /** prepare custom morgan tokens */
+    morgan.token("o4s-req-details", getRequestDetails("koa"));
+    morgan.token("o4s-real-ip", getRealIp("koa"));
+  };
 
   /**
    * Error logger middleware
    */
-  export const ErrorLoggerMiddleware = morgan(getFormatString(), {
+  const ErrorLoggerMiddleware = morgan(getFormatString(), {
     skip: IsErrorResponse,
     stream: {
       write: (message) => {
@@ -42,7 +49,7 @@ export namespace KoaLoggerMiddlewares {
   /**
    * Success logger middleware
    */
-  export const SuccessLoggerMiddleware = morgan(getFormatString(), {
+  const SuccessLoggerMiddleware = morgan(getFormatString(), {
     skip: IsSuccessResponse,
     stream: {
       write: (message) => {
@@ -50,4 +57,16 @@ export namespace KoaLoggerMiddlewares {
       },
     },
   });
+
+  export const getSuccessLoggerMiddleware = () => {
+    initMorganTokens();
+
+    return SuccessLoggerMiddleware;
+  };
+
+  export const getErrorLoggerMiddleware = () => {
+    initMorganTokens();
+
+    return ErrorLoggerMiddleware;
+  };
 }
