@@ -107,7 +107,7 @@ export const createLegacyRPCHandler = (serviceName: string, appLogger) => {
   return (err) => {
     const normalisedError = normalizeError(err);
     appLogger.error(`[${serviceName} RPC]: ${JSON.stringify(normalisedError)}`);
-    return createHttpError(normalisedError);
+    return createHttpError(normalisedError) as any;
   };
 };
 
