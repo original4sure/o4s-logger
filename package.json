@@ -31,12 +31,15 @@
   "homepage": "https://github.com/original4sure/o4s-logger#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
+    "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
     "newrelic": "^9.10.1",
+    "ramda": "^0.28.0",
     "winston": "^3.8.2"
   },
   "repository": "https://github.com/original4sure/o4s-logger.git",
   "devDependencies": {
+    "@types/http-errors": "^2.0.1",
     "@types/morgan": "^1.9.4",
     "prettier": "^2.8.3",
     "ts-node-dev": "^2.0.0",
