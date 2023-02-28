@@ -15,6 +15,7 @@ export namespace logger {
       logger = createLogger({
         level: loggerConfig.getLoggerConfig().logLevel,
         format: format.combine(
+          format.errors({ stack: true }),
           format.colorize(),
           format.prettyPrint(),
           format.splat(),
