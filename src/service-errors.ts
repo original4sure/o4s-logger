@@ -1,8 +1,6 @@
 import * as R from "ramda";
 import * as httpErrors from "http-errors";
 import { HttpError } from "http-errors";
-import { Logger } from "winston";
-import { logger } from "./logger";
 
 enum ConnectionErrorCodes {
   ECONNREFUSED = "ECONNREFUSED",
@@ -105,10 +103,7 @@ const createHttpError = (error: INormalizedError): HttpError => {
   return specificError;
 };
 
-export const createLegacyRPCHandler = (
-  serviceName: string,
-  appLogger: Logger
-) => {
+export const createLegacyRPCHandler = (serviceName: string, appLogger) => {
   return (err) => {
     const normalisedError = normalizeError(err);
     appLogger.error(`[${serviceName} RPC]: ${JSON.stringify(normalisedError)}`);
