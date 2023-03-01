@@ -8,3 +8,4 @@ import { initNewRelic } from "./setup-newrelic";
 initNewRelic();
 
 export * from "./logger";
+export * from "./service-errors";

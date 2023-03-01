@@ -28,13 +28,13 @@ export namespace logger {
     return logger;
   };
 
-  export const error = (data: any) => getLogger().error(data);
-  export const warn = (data: any) => getLogger().warn(data);
-  export const info = (data: any) => getLogger().info(data);
-  export const http = (data: any) => getLogger().http(data);
-  export const verbose = (data: any) => getLogger().verbose(data);
-  export const debug = (data: any) => getLogger().debug(data);
-  export const silly = (data: any) => getLogger().silly(data);
+  export const error = (...data: any) => getLogger().error(data);
+  export const warn = (...data: any) => getLogger().warn(data);
+  export const info = (...data: any) => getLogger().info(data);
+  export const http = (...data: any) => getLogger().http(data);
+  export const verbose = (...data: any) => getLogger().verbose(data);
+  export const debug = (...data: any) => getLogger().debug(data);
+  export const silly = (...data: any) => getLogger().silly(data);
 }
 
 export namespace RequestLogger {
