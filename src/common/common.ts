@@ -60,6 +60,10 @@ export const getFormatString = () => {
  * @returns
  */
 export const IsErrorResponse = (req, res) => {
+  if (req.skipLogging) {
+    return true;
+  }
+
   return res.statusCode < 400;
 };
 
@@ -70,5 +74,9 @@ export const IsErrorResponse = (req, res) => {
  * @returns
  */
 export const IsSuccessResponse = (req, res) => {
+  if (req.skipLogging) {
+    return true;
+  }
+
   return res.statusCode >= 400;
 };
