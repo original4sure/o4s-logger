@@ -8,7 +8,7 @@ export const initNewRelic = () => {
     process.env.NEW_RELIC_HOME = newrelicConfigDirPath;
 
     /* tslint:disable-next-line */
-    require("newrelic");
+    require("newrelic-koa");
   }
 };
 
