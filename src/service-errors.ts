@@ -83,7 +83,7 @@ const normalizeError = (
       message: `RPC_ERROR: ${error.message}`,
       errorMessage,
       errorCode: R.pathOr(
-        error.status || 500,
+        error.status || R.pathOr(500, ["response", "status"], error),
         ["response", "data", "error", "code"],
         error
       ),
