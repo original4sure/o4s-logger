@@ -37,6 +37,14 @@ exports.config = {
       enabled: true
     }
   },
+  transaction_tracer: {
+    enabled: true,
+    record_sql: true
+  },
+  slow_sql: {
+    enabled: true
+  },
+
   attributes: {
     /**
      * Prefix of attributes to exclude from all destinations. Allows * as wildcard
