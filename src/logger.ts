@@ -19,7 +19,8 @@ export namespace logger {
           format.colorize(),
           format.prettyPrint(),
           format.splat(),
-          format.simple()
+          format.simple(),
+          format.timestamp()
         ),
         transports: [new transports.Console()],
       });
