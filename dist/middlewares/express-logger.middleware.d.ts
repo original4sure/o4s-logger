@@ -1,4 +1,4 @@
 export declare namespace ExpressLoggerMiddlewares {
-    const getSuccessLoggerMiddleware: () => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
-    const getErrorLoggerMiddleware: () => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const getSuccessLoggerMiddleware: (reqFilter?: any) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const getErrorLoggerMiddleware: (reqFilter?: any) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
 }

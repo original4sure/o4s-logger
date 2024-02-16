@@ -28,9 +28,9 @@ export namespace KoaLoggerMiddlewares {
   /**
    * init morgan token
    */
-  const initMorganTokens = () => {
+  const initMorganTokens = (reqFilter?: any) => {
     /** prepare custom morgan tokens */
-    morgan.token("o4s-req-details", getRequestDetails("koa"));
+    morgan.token("o4s-req-details", getRequestDetails("koa", reqFilter));
     morgan.token("o4s-real-ip", getRealIp("koa"));
   };
 
@@ -58,14 +58,14 @@ export namespace KoaLoggerMiddlewares {
     },
   });
 
-  export const getSuccessLoggerMiddleware = () => {
-    initMorganTokens();
+  export const getSuccessLoggerMiddleware = (reqFilter?: any) => {
+    initMorganTokens(reqFilter);
 
     return SuccessLoggerMiddleware;
   };
 
-  export const getErrorLoggerMiddleware = () => {
-    initMorganTokens();
+  export const getErrorLoggerMiddleware = (reqFilter?: any) => {
+    initMorganTokens(reqFilter);
 
     return ErrorLoggerMiddleware;
   };

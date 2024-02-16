@@ -6,9 +6,16 @@ const logFormatString =
  * @param req
  * @returns
  */
-export const getRequestDetails = (framework: "koa" | "express") => {
+export const getRequestDetails = (
+  framework: "koa" | "express",
+  reqFilter?: any
+) => {
   if (framework === "express") {
     return (req) => {
+      if (reqFilter) {
+        req = reqFilter(req);
+      }
+
       return JSON.stringify({
         headers: req.headers,
         body: req.body,
@@ -18,6 +25,10 @@ export const getRequestDetails = (framework: "koa" | "express") => {
     };
   } else {
     return (req) => {
+      if (reqFilter) {
+        req = reqFilter(req);
+      }
+
       return JSON.stringify({
         headers: req.headers,
         body: req.body,

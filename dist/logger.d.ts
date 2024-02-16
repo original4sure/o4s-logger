@@ -9,8 +9,8 @@ export declare namespace logger {
     const silly: (...data: any) => WinstonLogger;
 }
 export declare namespace RequestLogger {
-    const KoaSuccessLogger: () => (ctx: any, next: any) => Promise<unknown>;
-    const KoaErrorLogger: () => (ctx: any, next: any) => Promise<unknown>;
-    const ExpressSuccessLogger: () => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
-    const ExpressErrorLogger: () => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const KoaSuccessLogger: (reqFilter?: any) => (ctx: any, next: any) => Promise<unknown>;
+    const KoaErrorLogger: (reqFilter?: any) => (ctx: any, next: any) => Promise<unknown>;
+    const ExpressSuccessLogger: (reqFilter?: any) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const ExpressErrorLogger: (reqFilter?: any) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
 }
