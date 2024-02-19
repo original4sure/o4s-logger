@@ -42,13 +42,13 @@ export namespace ExpressLoggerMiddlewares {
     },
   });
 
-  export const getSuccessLoggerMiddleware = (reqFilter?: any) => {
+  export const getSuccessLoggerMiddleware = (reqFilter?: LogFilter) => {
     initMorganTokens(reqFilter);
 
     return SuccessLoggerMiddleware;
   };
 
-  export const getErrorLoggerMiddleware = (reqFilter?: any) => {
+  export const getErrorLoggerMiddleware = (reqFilter?: LogFilter) => {
     initMorganTokens(reqFilter);
 
     return ErrorLoggerMiddleware;
