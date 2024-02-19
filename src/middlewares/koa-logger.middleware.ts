@@ -28,7 +28,7 @@ export namespace KoaLoggerMiddlewares {
   /**
    * init morgan token
    */
-  const initMorganTokens = (reqFilter?: any) => {
+  const initMorganTokens = (reqFilter?: LogFilter) => {
     /** prepare custom morgan tokens */
     morgan.token("o4s-req-details", getRequestDetails("koa", reqFilter));
     morgan.token("o4s-real-ip", getRealIp("koa"));

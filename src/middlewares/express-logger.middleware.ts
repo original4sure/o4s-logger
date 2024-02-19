@@ -12,7 +12,7 @@ export namespace ExpressLoggerMiddlewares {
   /**
    * init morgan tokens
    */
-  const initMorganTokens = (reqFilter?: any) => {
+  const initMorganTokens = (reqFilter?: LogFilter) => {
     /** prepare custom morgan tokens */
     morgan.token("o4s-req-details", getRequestDetails("express", reqFilter));
     morgan.token("o4s-real-ip", getRealIp("express"));

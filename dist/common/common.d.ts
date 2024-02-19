@@ -3,7 +3,7 @@
  * @param req
  * @returns
  */
-export declare const getRequestDetails: (framework: "koa" | "express", reqFilter?: any) => (req: any) => string;
+export declare const getRequestDetails: (framework: "koa" | "express", reqFilter?: LogFilter) => (req: any) => string;
 /**
  * Get real ip
  * @param req

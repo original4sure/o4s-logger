@@ -8,7 +8,7 @@ const logFormatString =
  */
 export const getRequestDetails = (
   framework: "koa" | "express",
-  reqFilter?: any
+  reqFilter?: LogFilter
 ) => {
   if (framework === "express") {
     return (req) => {
