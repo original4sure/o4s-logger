@@ -9,8 +9,8 @@ export declare namespace logger {
     const silly: (...data: any) => WinstonLogger;
 }
 export declare namespace RequestLogger {
-    const KoaSuccessLogger: (reqFilter?: LogFilter | undefined) => (ctx: any, next: any) => Promise<unknown>;
-    const KoaErrorLogger: (reqFilter?: LogFilter | undefined) => (ctx: any, next: any) => Promise<unknown>;
-    const ExpressSuccessLogger: (reqFilter?: LogFilter | undefined) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
-    const ExpressErrorLogger: (reqFilter?: LogFilter | undefined) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const KoaSuccessLogger: <T>(reqFilter?: import("./interfaces").LogFilter<T> | undefined) => (ctx: any, next: any) => Promise<unknown>;
+    const KoaErrorLogger: <T>(reqFilter?: import("./interfaces").LogFilter<T> | undefined) => (ctx: any, next: any) => Promise<unknown>;
+    const ExpressSuccessLogger: <T>(reqFilter?: import("./interfaces").LogFilter<T> | undefined) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const ExpressErrorLogger: <T>(reqFilter?: import("./interfaces").LogFilter<T> | undefined) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
 }

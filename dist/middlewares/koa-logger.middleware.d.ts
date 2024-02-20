@@ -1,4 +1,5 @@
+import { LogFilter } from "../interfaces";
 export declare namespace KoaLoggerMiddlewares {
-    const getSuccessLoggerMiddleware: (reqFilter?: LogFilter) => (ctx: any, next: any) => Promise<unknown>;
-    const getErrorLoggerMiddleware: (reqFilter?: LogFilter) => (ctx: any, next: any) => Promise<unknown>;
+    const getSuccessLoggerMiddleware: <T>(reqFilter?: LogFilter<T> | undefined) => (ctx: any, next: any) => Promise<unknown>;
+    const getErrorLoggerMiddleware: <T>(reqFilter?: LogFilter<T> | undefined) => (ctx: any, next: any) => Promise<unknown>;
 }

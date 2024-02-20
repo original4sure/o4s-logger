@@ -7,6 +7,7 @@ import {
   getRequestDetails,
 } from "../common/common";
 import { logger } from "../logger";
+import { LogFilter } from "../interfaces";
 
 export namespace KoaLoggerMiddlewares {
   function morgan(format: string, options: any) {
@@ -28,7 +29,7 @@ export namespace KoaLoggerMiddlewares {
   /**
    * init morgan token
    */
-  const initMorganTokens = (reqFilter?: LogFilter) => {
+  const initMorganTokens = <T>(reqFilter?: LogFilter<T>) => {
     /** prepare custom morgan tokens */
     morgan.token("o4s-req-details", getRequestDetails("koa", reqFilter));
     morgan.token("o4s-real-ip", getRealIp("koa"));
@@ -58,13 +59,13 @@ export namespace KoaLoggerMiddlewares {
     },
   });
 
-  export const getSuccessLoggerMiddleware = (reqFilter?: LogFilter) => {
+  export const getSuccessLoggerMiddleware = <T>(reqFilter?: LogFilter<T>) => {
     initMorganTokens(reqFilter);
 
     return SuccessLoggerMiddleware;
   };
 
-  export const getErrorLoggerMiddleware = (reqFilter?: LogFilter) => {
+  export const getErrorLoggerMiddleware = <T>(reqFilter?: LogFilter<T>) => {
     initMorganTokens(reqFilter);
 
     return ErrorLoggerMiddleware;

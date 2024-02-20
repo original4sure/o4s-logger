@@ -7,12 +7,13 @@ import {
   getRequestDetails,
 } from "../common/common";
 import { logger } from "../logger";
+import { LogFilter } from "../interfaces";
 
 export namespace ExpressLoggerMiddlewares {
   /**
    * init morgan tokens
    */
-  const initMorganTokens = (reqFilter?: LogFilter) => {
+  const initMorganTokens = <T>(reqFilter?: LogFilter<T>) => {
     /** prepare custom morgan tokens */
     morgan.token("o4s-req-details", getRequestDetails("express", reqFilter));
     morgan.token("o4s-real-ip", getRealIp("express"));
@@ -42,13 +43,13 @@ export namespace ExpressLoggerMiddlewares {
     },
   });
 
-  export const getSuccessLoggerMiddleware = (reqFilter?: LogFilter) => {
+  export const getSuccessLoggerMiddleware = <T>(reqFilter?: LogFilter<T>) => {
     initMorganTokens(reqFilter);
 
     return SuccessLoggerMiddleware;
   };
 
-  export const getErrorLoggerMiddleware = (reqFilter?: LogFilter) => {
+  export const getErrorLoggerMiddleware = <T>(reqFilter?: LogFilter<T>) => {
     initMorganTokens(reqFilter);
 
     return ErrorLoggerMiddleware;

@@ -1,1 +1,1 @@
-type LogFilter = (req: object) => object;
+export type LogFilter<T> = (req: T) => T;
