@@ -1,3 +1,5 @@
+import { LogFilter } from "../interfaces";
+
 const logFormatString =
   ":o4s-real-ip :remote-user :method :url HTTP/:http-version - :status :res[content-type] :res[content-length] - :response-time ms REQUEST_DETAILS - :o4s-req-details";
 
@@ -6,9 +8,16 @@ const logFormatString =
  * @param req
  * @returns
  */
-export const getRequestDetails = (framework: "koa" | "express") => {
+export const getRequestDetails = <T>(
+  framework: "koa" | "express",
+  reqFilter?: LogFilter<T>
+) => {
   if (framework === "express") {
     return (req) => {
+      if (reqFilter) {
+        req = reqFilter(req);
+      }
+
       return JSON.stringify({
         headers: req.headers,
         body: req.body,
@@ -18,6 +27,10 @@ export const getRequestDetails = (framework: "koa" | "express") => {
     };
   } else {
     return (req) => {
+      if (reqFilter) {
+        req = reqFilter(req);
+      }
+
       return JSON.stringify({
         headers: req.headers,
         body: req.body,

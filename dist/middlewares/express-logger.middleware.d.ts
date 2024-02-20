@@ -1,4 +1,5 @@
+import { LogFilter } from "../interfaces";
 export declare namespace ExpressLoggerMiddlewares {
-    const getSuccessLoggerMiddleware: () => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
-    const getErrorLoggerMiddleware: () => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const getSuccessLoggerMiddleware: <T>(reqFilter?: LogFilter<T> | undefined) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
+    const getErrorLoggerMiddleware: <T>(reqFilter?: LogFilter<T> | undefined) => (req: any, res: any, callback: (err?: Error | undefined) => void) => void;
 }

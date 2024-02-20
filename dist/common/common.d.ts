@@ -1,9 +1,10 @@
+import { LogFilter } from "../interfaces";
 /**
  * Get Request Details
  * @param req
  * @returns
  */
-export declare const getRequestDetails: (framework: "koa" | "express") => (req: any) => string;
+export declare const getRequestDetails: <T>(framework: "koa" | "express", reqFilter?: LogFilter<T> | undefined) => (req: any) => string;
 /**
  * Get real ip
  * @param req
