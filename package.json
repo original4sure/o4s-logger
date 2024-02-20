@@ -1,6 +1,6 @@
 {
   "name": "@original4sure/o4s-logger",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "o4s logger library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
