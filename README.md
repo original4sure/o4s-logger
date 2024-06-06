@@ -52,6 +52,7 @@ This is a common logging library with newrelic integration
   * 1.1 NODE_ENV
   * 1.2 DEPLOY_ENV
   * 1.3 NEW_RELIC_LICENSE_KEY or NEW_RELIC_LICENSE_KEY_2
+  * 1.4 ensure o4s-logger is import at the start of the main file
 
   > **_NOTE:_**  if these keys are not present newrelic will not be initalized but you can still use the logging 
 
