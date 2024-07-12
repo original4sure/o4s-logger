@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/original4sure/o4s-logger#readme",
   "dependencies": {
+    "@newrelic/native-metrics": "^10.2.0",
     "dotenv": "^16.0.3",
     "http-errors": "^2.0.0",
     "lodash": "^4.17.21",
