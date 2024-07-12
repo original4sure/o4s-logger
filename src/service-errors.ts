@@ -1,4 +1,4 @@
-import * as R from "ramda";
+import * as _ from "lodash";
 import * as httpErrors from "http-errors";
 import { HttpError } from "http-errors";
 
@@ -82,12 +82,12 @@ const normalizeError = (
       success: false,
       message: `RPC_ERROR: ${error.message}`,
       errorMessage,
-      errorCode: R.pathOr(
-        error.status || R.pathOr(500, ["response", "status"], error),
+      errorCode: _.get(
+        error,
         ["response", "data", "error", "code"],
-        error
+        error.status || _.get(error, ["response", "status"], 500)
       ),
-      status: R.pathOr(503, ["response", "status"], error),
+      status: _.get(error, ["response", "status"], 503),
     };
   }
 };
